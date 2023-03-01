@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+<div id="home-wrapper">
+    <table id="board">
+        <tr>
+            <th>To Do</th>
+            <th>In Progress</th>
+            <th>Blocked</th>
+            <th>Done</th>
+        </tr>
+        <tr>
+            <td><a href="{{ path('task') }}" class="modal-task" data-bs-toggle="modal" data-bs-target="#task-card">Task</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
