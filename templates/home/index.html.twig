@@ -13,10 +13,90 @@
             <th>Done</th>
         </tr>
         <tr>
-            <td><a href="{{ path('task') }}" class="modal-task" data-bs-toggle="modal" data-bs-target="#task-card">Task</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                {% if todo is not empty %}
+                    {% for task in todo %}
+                        <div id="task-btn" class="btn-{{ task.status }}-{{ task.id }}" data-id="{{ task.id }}" data-status="{{ task.status }}">
+                            <button id="task-{{ task.status }}-{{ task.id }}" class="modal-task" data-id="{{ task.id }}" data-status="{{ task.status }}">
+                                <div class="task-prev-card" data-id="{{ task.id }}" data-status="{{ task.status }}">
+                                    <h2 data-id="{{ task.id }}" data-status="{{ task.status }}">{{ task.getTitle() }}</h2>
+                                    <h5 data-id="{{ task.id }}" data-status="{{ task.status }}">Tags:
+                                    {% set string = task.getTags() %}
+                                    {% set tags = string|split(',') %}
+                                    {% for tag in tags %}
+                                        <span class="tag" data-id="{{ task.id }}" data-status="{{ task.status }}">{{ tag }}</span>
+                                    {% endfor %}
+                                    <br/>Due date: {{ task.getDuedate() }}
+                                </div>
+                            </button>
+                            <div id="card-{{ task.status }}-{{ task.id }}" class="modal-content" hidden></div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </td>
+            <td>
+                {% if progress is not empty %}
+                    {% for task in progress %}
+                        <div id="task-btn" class="btn-{{ task.status }}-{{ task.id }}" data-id="{{ task.id }}" data-status="{{ task.status }}">
+                            <button id="task-{{ task.status }}-{{ task.id }}" class="modal-task" data-id="{{ task.id }}" data-status="{{ task.status }}">
+                                <div class="task-prev-card" data-id="{{ task.id }}" data-status="{{ task.status }}">
+                                    <h2 data-id="{{ task.id }}" data-status="{{ task.status }}">{{ task.getTitle() }}</h2>
+                                    <h5 data-id="{{ task.id }}" data-status="{{ task.status }}">Tags:
+                                    {% set string = task.getTags() %}
+                                    {% set tags = string|split(',') %}
+                                    {% for tag in tags %}
+                                        <span class="tag" data-id="{{ task.id }}" data-status="{{ task.status }}">{{ tag }}</span>
+                                    {% endfor %}
+                                    <br/>Due date: {{ task.getDuedate() }}
+                                </div>
+                            </button>
+                            <div id="card-{{ task.status }}-{{ task.id }}" class="modal-content" hidden></div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </td>
+            <td>
+                {% if blocked is not empty %}
+                    {% for task in blocked %}
+                        <div id="task-btn" class="btn-{{ task.status }}-{{ task.id }}" data-id="{{ task.id }}" data-status="{{ task.status }}">
+                            <button id="task-{{ task.status }}-{{ task.id }}" class="modal-task" data-id="{{ task.id }}" data-status="{{ task.status }}">
+                                <div class="task-prev-card" data-id="{{ task.id }}" data-status="{{ task.status }}">
+                                    <h2 data-id="{{ task.id }}" data-status="{{ task.status }}">{{ task.getTitle() }}</h2>
+                                    <h5 data-id="{{ task.id }}" data-status="{{ task.status }}">Tags:
+                                    {% set string = task.getTags() %}
+                                    {% set tags = string|split(',') %}
+                                    {% for tag in tags %}
+                                        <span class="tag" data-id="{{ task.id }}" data-status="{{ task.status }}">{{ tag }}</span>
+                                    {% endfor %}
+                                    <br/>Due date: {{ task.getDuedate() }}
+                                </div>
+                            </button>
+                            <div id="card-{{ task.status }}-{{ task.id }}" class="modal-content" hidden></div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </td>
+            <td>
+                {% if done is not empty %}
+                    {% for task in done %}
+                        <div id="task-btn" class="btn-{{ task.status }}-{{ task.id }}" data-id="{{ task.id }}" data-status="{{ task.status }}">
+                            <button id="task-{{ task.status }}-{{ task.id }}" class="modal-task" data-id="{{ task.id }}" data-status="{{ task.status }}">
+                                <div class="task-prev-card" data-id="{{ task.id }}" data-status="{{ task.status }}">
+                                    <h2 data-id="{{ task.id }}" data-status="{{ task.status }}">{{ task.getTitle() }}</h2>
+                                    <h5 data-id="{{ task.id }}" data-status="{{ task.status }}">Tags:
+                                    {% set string = task.getTags() %}
+                                    {% set tags = string|split(',') %}
+                                    {% for tag in tags %}
+                                        <span class="tag" data-id="{{ task.id }}" data-status="{{ task.status }}">{{ tag }}</span>
+                                    {% endfor %}
+                                    <br/>Due date: {{ task.getDuedate() }}
+                                </div>
+                            </button>
+                            <div id="card-{{ task.status }}-{{ task.id }}" class="modal-content" hidden></div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </td>
         </tr>
     </table>
 </div>

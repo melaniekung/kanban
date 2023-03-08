@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Task{% endblock %}
+
+{% block body %}
+{% for t in task %}
+    <div id="task-card" data-id="{{ t.id }}" data-status="{{ t.status }}">
+        <h2 data-id="{{ t.id }}" data-status="{{ t.status }}">{{ t.getTitle() }}</h2>
+        <div id="tags" data-id="{{ t.id }}" data-status="{{ t.status }}">
+            <h5 id="tag" data-id="{{ t.id }}" data-status="{{ t.status }}">{{ t.getTags() }}</h5>
+        </div>
+        <label>Due date:</label><h5 data-id="{{ t.id }}" data-status="{{ t.status }}">{{ t.getDuedate() }}</h5>
+        <p data-id="{{ t.id }}" data-status="{{ t.status }}">{{ t.getNotes() }}</p>
+        <button id="edit-btn" class="btn" data-id="{{ t.id }}">Edit</button>
+
+        <div id="edit-modal-{{ t.id }}" class="modal" hidden>
+            <form id="edit-form">
+                <div class="form-group">
+                    <input type="text" id="edit-title-{{ t.id }}" class="form-control" placeholder="Task" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="edit-tags-{{ t.id }}">Tags:</label>
+                    <input type="text" id="edit-tags-{{ t.id }}" class="form-control" placeholder="Tags" name="tags">
+                </div>
+                <div class="form-group">
+                    <label for="edit-duedate-{{ t.id }}">Due date:</label>
+                    <input type="text" id="edit-duedate-{{ t.id }}" class="form-control" placeholder="Due date" name="duedate">
+                </div>
+                <div class="form-group">
+                    <label for="edit-notes-{{ t.id }}">Notes:</label>
+                    <textarea type="text" id="edit-notes-{{ t.id }}" class="form-control" name="notes" placeholder="Task notes"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-status-{{ t.id }}">Status:</label>
+                    <select id="edit-status" class="form-control" name="status">
+                        <option value="todo">To Do</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="done">Done</option>
+                    </select>
+                </div>
+                <button type="submit" id="save-btn" class="btn" data-id="{{ t.id }}">Save</button>
+            </form>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

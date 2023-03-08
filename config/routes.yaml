@@ -2,6 +2,14 @@ controllers:
     resource: ../src/Controller/
     type: attribute
 
-task:
-    path: /task
-    controller: App\Controller\TaskController::index
+task_view:
+    path: /task/{id}
+    controller: App\Controller\TaskController::view
+
+task_edit:
+    path: /task/edit/{id}
+    controller: App\Controller\TaskController::edit
+
+task_update:
+    path: /task/update/{id}
+    controller: App\Controller\TaskController::update
