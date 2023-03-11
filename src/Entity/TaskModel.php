@@ -116,4 +116,9 @@ class TaskModel
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return sprintf('Task(id=%d, title=%s, status=%s)', $this->getId(), $this->getTitle(), $this->getStatus());
+    }
 }

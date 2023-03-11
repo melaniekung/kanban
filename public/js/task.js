@@ -12,7 +12,6 @@ function showModal(event) {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-
         return response.json();
       })
       .then(data => {
@@ -20,25 +19,20 @@ function showModal(event) {
         document.querySelector('#edit-tags-' + id).value = data[0]['tags'];
         document.querySelector('#edit-duedate-' + id).value = data[0]['duedate'];
         document.querySelector('#edit-notes-' + id).value = data[0]['notes'];
+        document.querySelector('#edit-status-' + id).value = data[0]['status'];
       });
   } else if (event.target.id === "save-btn") {
-    event.preventDefault();
-
-    const formData = new FormData(event.target.parentNode);
-
-    console.log(event.target.parentNode)
-
-    fetch(`/task/update/${id}`, {
-      method: 'POST',
-      body: formData
-    })
-      .then(response => response.json())
-      .then(data => {
-        editModal.hidden = true;
-
-        window.location.reload();
-      });
-  } else {
+    // check for status delete
+    if (document.querySelector('#edit-status-' + id).value != "delete") {
+      // submit form to save/update
+      document.getElementById(event.target.parentNode.id).submit();
+    } else {
+      // redirect to task_delete
+      fetch("/task/delete/" + id)
+        .then(response=>response.json())
+        .then(window.location.reload(true))
+    }
+  } else if (event.target.id === "") {
     // clicking anywhere other than buttons
     const url = "/task/" + id;
     const status = event.target.getAttribute('data-status');
@@ -66,6 +60,7 @@ function showModal(event) {
   }
 }
 
+// set event listener for each task on kanban
 const tasks = document.querySelectorAll('#task-btn');
 tasks.forEach(t => {
   const taskBtn = t.getAttribute('class');

@@ -19,22 +19,25 @@ class TaskModelType extends AbstractType
             ->add('title', TextType::class)
             ->add('status', ChoiceType::class, [
                 'choices' => [
-                    'Open' => 'open',
-                    'In Progress' => 'in_progress',
-                    'Closed' => 'closed'
+                    'To Do' => 'todo',
+                    'In Progress' => 'progress',
+                    'Blocked' => 'blocked',
+                    'Done' => 'done',
+                    'Archive' => 'archive',
+                    'Delete' => 'delete'
                 ]
             ])
             ->add('notes', TextareaType::class)
-            ->add('tags', TextareaType::class)
-            ->add('duedate', DateType::class, [
-                'widget' => 'single_text'
-            ]);
+            ->add('tags', TextType::class)
+            ->add('duedate', TextType::class)
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => TaskModel::class
+            'data_class' => TaskModel::class,
+            'data_class' => null,
         ]);
     }
 }

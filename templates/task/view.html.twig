@@ -14,7 +14,7 @@
         <button id="edit-btn" class="btn" data-id="{{ t.id }}">Edit</button>
 
         <div id="edit-modal-{{ t.id }}" class="modal" hidden>
-            <form id="edit-form">
+            <form id="edit-form" method="POST" data-id="{{ t.id }}" action="{{ path('task_update', {'id': t.id}) }}">
                 <div class="form-group">
                     <input type="text" id="edit-title-{{ t.id }}" class="form-control" placeholder="Task" name="title">
                 </div>
@@ -31,11 +31,14 @@
                     <textarea type="text" id="edit-notes-{{ t.id }}" class="form-control" name="notes" placeholder="Task notes"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="edit-status-{{ t.id }}">Status:</label>
-                    <select id="edit-status" class="form-control" name="status">
+                    <label for="edit-status">Status:</label>
+                    <select id="edit-status-{{ t.id }}" class="form-control" name="status">
                         <option value="todo">To Do</option>
-                        <option value="in_progress">In Progress</option>
+                        <option value="progress">In Progress</option>
+                        <option value="blocked">Blocked</option>
                         <option value="done">Done</option>
+                        <option value="archive">Archive</option>
+                        <option value="delete">Delete</option>
                     </select>
                 </div>
                 <button type="submit" id="save-btn" class="btn" data-id="{{ t.id }}">Save</button>

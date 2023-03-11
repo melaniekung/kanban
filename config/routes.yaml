@@ -2,6 +2,18 @@ controllers:
     resource: ../src/Controller/
     type: attribute
 
+homepage:
+    path: /
+    controller: App\Controller\HomeController::index
+
+task_create:
+    path: /task/create
+    controller: App\Controller\TaskController::create
+
+task_create_new:
+    path: /task/create/new
+    controller: App\Controller\TaskController::createTask
+
 task_view:
     path: /task/{id}
     controller: App\Controller\TaskController::view
@@ -13,3 +25,7 @@ task_edit:
 task_update:
     path: /task/update/{id}
     controller: App\Controller\TaskController::update
+
+task_delete:
+    path: /task/delete/{id}
+    controller: App\Controller\TaskController::delete

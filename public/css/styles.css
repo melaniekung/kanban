@@ -30,12 +30,4 @@
 #tags {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-#tag {
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #797979;
 }

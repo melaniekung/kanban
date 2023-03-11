@@ -3,7 +3,11 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-
+<div id="header">
+    <form method="post" action="{{ path('task_create') }}">
+        <button type="submit" id="create-btn" class="btn btn-primary">hi</button>
+    </form>
+</div>
 <div id="home-wrapper">
     <table id="board">
         <tr>

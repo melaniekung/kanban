@@ -9,7 +9,9 @@ use App\Repository\TaskRepository;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'home')]
+    /**
+     * @Route("/", name="homepage")
+     */
     public function index(TaskRepository $taskRepository): Response
     {
         $todo = $taskRepository->findByStatus('todo');
@@ -25,3 +27,4 @@ class HomeController extends AbstractController
         ]);
     }
 }
+?>
